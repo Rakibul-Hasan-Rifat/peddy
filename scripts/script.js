@@ -79,15 +79,17 @@ const showActive = (e) => {
 // show categories
 const showCategories = (categories) => {
   const categoryContainer = document.getElementById("category_container");
-  console.log(categories);
+
   categories.forEach((category) => {
     const { id, category_icon, category: petType } = category;
-    const div = document.createElement("div");
+    const div = document.createElement("div"); // create a new div element
+    // adding click event to the div
     div.addEventListener("click", (e) => {
       console.log("clicked pet", e.currentTarget);
       loadCategorisedPets(petType);
     });
-    div.id = `category_${id}`;
+    div.id = `category_${id}`; // adding id to the div
+    // adding class attribute to the div
     div.setAttribute(
       "class",
       "min-w-[200px] flex gap-3 justify-center items-center px-6 py-3 rounded-[16px] border hover:cursor-pointer"
@@ -97,8 +99,15 @@ const showCategories = (categories) => {
       <h4 class="text-2xl font-semibold">${petType}</h4>
     `;
     categoryContainer.append(div);
-    console.log(div.id);
   });
+};
+
+// click handler on like button
+const petImages = [];
+const likeBtnHandler = (a, b, c) => {
+  petImages.push(b);
+  showLikedPets(petImages);
+  console.log(petImages, "like btn clicked", a, b, c);
 };
 
 // show pets
@@ -149,7 +158,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
     </p>
     <hr class='my-2' />
     <div class="flex items-center justify-between">
-      <button class="px-3 py-2 rounded-lg border border-[#0e7a8126]">
+      <button onclick="likeBtnHandler(event, '${image}')" class="px-3 py-2 rounded-lg border border-[#0e7a8126]">
         <img src="https://img.icons8.com/fluency-systems-regular/24/facebook-like--v1.png"/>
       </button>
       <button class="px-3 py-2 rounded-lg border border-[#0e7a8126] font-semibold text-[#0e7a81]">Adopt</button>
@@ -157,6 +166,18 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
     </div>
     `;
     petContainer.append(div);
+  });
+};
+
+const showLikedPets = (likedPetImages) => {
+  const likedPetContainer = document.getElementById("liked_pet_container");
+  console.log("show liked pets func", likedPetImages);
+  likedPetContainer.innerHTML = "";
+  likedPetImages.forEach((petImage) => {
+    const imgElement = document.createElement("img");
+    imgElement.src = petImage;
+    imgElement.classList.add('rounded', )
+    likedPetContainer.append(imgElement);
   });
 };
 

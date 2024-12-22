@@ -39,7 +39,12 @@
                 <h4 class="text-2xl text-[#131313] font-bold">Best Deal For You</h4>
                 <button class="bg-[#0E7A81] text-white px-4 py-2 rounded-xl text-lg">Sort by price</button>
             </div>
-            <div id="pet_container" class="grid grid-cols-4 gap-3"></div>
+            <div class="flex gap-3">
+                <div id="pet_container" class="w-3/4 grid grid-cols-3 gap-3"></div>
+                <div id="liked_pet_container" class="w-1/4 grid grid-cols-2 gap-2 content-start border rounded-lg p-3">
+                    <span class="col-span-full text-center text-gray-400">No liked pet yet!</span>
+                </div>
+            </div>
         </section>
     </main>
     <script src="scripts/script.js"></script>
