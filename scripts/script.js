@@ -38,14 +38,20 @@ const loadCategorisedPets = async (category) => {
       `https://openapi.programming-hero.com/api/peddy/category/${category}`
     );
     const pets = await response.json();
-    showPets(pets);
+    document.getElementById(
+      "pet_container"
+    ).innerHTML = `<div class="flex justify-center items-center col-span-full">
+    <span class="loader"></span>
+    </div>`;
+    setTimeout(() => {
+      showPets(pets.data);
+    }, 2000);
   } catch (error) {}
 };
 
 const showActive = (e) => {
   const categoryContainer = document.getElementById("category_container");
   for (const elem of categoryContainer.children) {
-    console.log(elem);
     elem.classList.remove(
       "rounded-[120px]",
       "bg-[#0e7a811a]",
@@ -75,15 +81,20 @@ const showCategories = (categories) => {
   const categoryContainer = document.getElementById("category_container");
   console.log(categories);
   categories.forEach((category) => {
+    const { id, category_icon, category: petType } = category;
     const div = document.createElement("div");
-    div.id = `category_${category.id}`;
+    div.addEventListener("click", (e) => {
+      console.log("clicked pet", e.currentTarget);
+      loadCategorisedPets(petType);
+    });
+    div.id = `category_${id}`;
     div.setAttribute(
       "class",
       "min-w-[200px] flex gap-3 justify-center items-center px-6 py-3 rounded-[16px] border hover:cursor-pointer"
     );
     div.innerHTML = `
-      <img src=${category.category_icon}/>
-      <h4 class="text-2xl font-semibold">${category.category}</h4>
+      <img src=${category_icon}/>
+      <h4 class="text-2xl font-semibold">${petType}</h4>
     `;
     categoryContainer.append(div);
     console.log(div.id);
@@ -95,6 +106,17 @@ const showPets = (pets) => {
   console.log(pets);
   const petContainer = document.getElementById("pet_container");
   petContainer.innerHTML = "";
+  if (pets.length < 1) {
+    petContainer.innerHTML = `
+    <div class="col-span-3 flex flex-col items-center justify-center px-10 py-5 rounded-lg bg-[#13131308]">
+      <img src="assets/error.webp" />
+      <h4 class="my-3 font-semibold text-3xl">No Information Available</h4>
+      <p class="text-[#131313bb] text-center">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
+its layout. The point of using Lorem Ipsum is that it has a.</p>
+    </div>
+    `;
+    return;
+  }
   pets.forEach((pet) => {
     const {
       image,
