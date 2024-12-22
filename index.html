@@ -26,12 +26,20 @@
     </header>
 
     <main>
-        <section>
+        <!-- category section -->
+        <section class="py-5">
             <h2>Adopt your best friend</h2>
         <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
-        <div id="category_container" class="flex gap-5 justify-between" onclick="showActive(event)">
+        <div id="category_container" class="flex gap-5 justify-between" onclick="showActive(event)"></div>
+        </section>
 
-        </div>
+        <!-- pets section -->
+        <section class="py-5">
+            <div class="my-3 flex justify-between items-center">
+                <h4 class="text-2xl text-[#131313] font-bold">Best Deal For You</h4>
+                <button class="bg-[#0E7A81] text-white px-4 py-2 rounded-xl text-lg">Sort by price</button>
+            </div>
+            <div id="pet_container" class="grid grid-cols-4 gap-3"></div>
         </section>
     </main>
     <script src="scripts/script.js"></script>

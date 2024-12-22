@@ -18,6 +18,11 @@ const loadPets = async () => {
       "https://openapi.programming-hero.com/api/peddy/pets"
     );
     const pets = await response.json();
+    document.getElementById(
+      "pet_container"
+    ).innerHTML = `<div class="flex justify-center items-center col-span-full">
+    <span class="loader"></span>
+    </div>`;
     setTimeout(() => {
       showPets(pets.pets);
     }, 2000);
@@ -88,6 +93,49 @@ const showCategories = (categories) => {
 // show pets
 const showPets = (pets) => {
   console.log(pets);
+  const petContainer = document.getElementById("pet_container");
+  petContainer.innerHTML = "";
+  pets.forEach((pet) => {
+    const {
+      image,
+      breed,
+      gender,
+      date_of_birth: birth,
+      pet_name: name,
+      price,
+    } = pet;
+    const div = document.createElement("div");
+    div.classList.add("p-3", "rounded-lg", "border");
+    div.innerHTML = `
+    <img src=${image} class="rounded-lg h-[180px] object-cover"/>
+    <h4 class='font-semibold text-2xl py-3'>${name}</h4>
+    <p class="flex gap-2 items-center">
+      <img width="15" height="15" src="https://img.icons8.com/material-rounded/15/windows-11.png" alt="windows-11"/>
+      <small>Breed: ${breed ? breed : "Not mentioned"}</small>
+    </p>
+    <p class="flex gap-2 items-center">
+      <img width="15" height="15" src="https://img.icons8.com/material-outlined/15/timeline-week.png" alt="windows-11"/>
+      <small>Birth: ${birth ? birth : "Unknown"}</small>
+    </p>
+    <p class="flex gap-2 items-center">
+      <img width="15" height="15" src="https://img.icons8.com/windows/15/transgender.png" alt="windows-11"/>
+      <small>Gender: ${gender ? gender : "Not specified"}</small>
+    </p>
+    <p class="flex gap-2 items-center">
+      <img width="15" height="15" src="https://img.icons8.com/small/16/us-dollar.png" alt="windows-11"/>
+      <small>Price: ${price ? price : "Not available"}</small>
+    </p>
+    <hr class='my-2' />
+    <div class="flex items-center justify-between">
+      <button class="px-3 py-2 rounded-lg border border-[#0e7a8126]">
+        <img src="https://img.icons8.com/fluency-systems-regular/24/facebook-like--v1.png"/>
+      </button>
+      <button class="px-3 py-2 rounded-lg border border-[#0e7a8126] font-semibold text-[#0e7a81]">Adopt</button>
+      <button class="px-3 py-2 rounded-lg border border-[#0e7a8126] font-semibold text-[#0e7a81]">Details</button>
+    </div>
+    `;
+    petContainer.append(div);
+  });
 };
 
 loadCategories();
