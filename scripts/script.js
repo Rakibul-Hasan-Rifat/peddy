@@ -225,7 +225,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
     div.classList.add("p-3", "rounded-lg", "border");
     const myObj = { name: "Rifat" };
     div.innerHTML = `
-    <img src=${image} class="rounded-lg h-[180px] object-cover"/>
+    <img src=${image} class="w-full rounded-lg h-[180px] object-cover"/>
     <h4 class='font-semibold text-2xl py-3'>${name}</h4>
     <p class="flex gap-2 items-center">
       <img width="15" height="15" src="https://img.icons8.com/material-rounded/15/windows-11.png" alt="windows-11"/>
