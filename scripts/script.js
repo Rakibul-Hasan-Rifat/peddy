@@ -104,10 +104,56 @@ const showCategories = (categories) => {
 
 // click handler on like button
 const petImages = [];
-const likeBtnHandler = (a, b, c) => {
-  petImages.push(b);
+const likeBtnHandler = (imageLink) => {
+  petImages.push(imageLink);
   showLikedPets(petImages);
-  console.log(petImages, "like btn clicked", a, b, c);
+  console.log(petImages, "like btn clicked");
+};
+
+// showPetDetails
+const hidePetDetails = () => {
+  console.log("hide details is called");
+  console.log(document.getElementById('details_section'));
+  document
+    .getElementById("pet_container")
+    .removeChild(document.getElementById("details_section"));
+};
+const showPetDetails = (petDetails) => {
+  const { name, image, birth, gender, price, breed, vaccinatedStatus } = petDetails;
+  const detailSection = `
+  <section id="details_section" class="w-full h-screen flex justify-center items-center fixed top-0 left-0">
+    <div class="w-[400px] rounded-lg p-5 text-center bg-white">
+      <img src="${image}" class="w-full object-cover rounded"/>
+      <h4 class="text-2xl font-semibold">${name}</h4>
+      <p class="flex gap-2 items-center">
+      <img width="15" height="15" src="https://img.icons8.com/material-rounded/15/windows-11.png" alt="windows-11"/>
+      <small>Breed: ${breed ? breed : "Not mentioned"}</small>
+    </p>
+    <p class="flex gap-2 items-center">
+      <img width="15" height="15" src="https://img.icons8.com/material-outlined/15/timeline-week.png" alt="windows-11"/>
+      <small>Birth: ${birth ? birth : "Unknown"}</small>
+    </p>
+    <p class="flex gap-2 items-center">
+      <img width="15" height="15" src="https://img.icons8.com/windows/15/transgender.png" alt="windows-11"/>
+      <small>Gender: ${gender ? gender : "Not specified"}</small>
+    </p>
+    <p class="flex gap-2 items-center">
+      <img width="15" height="15" src="https://img.icons8.com/small/16/us-dollar.png" alt="windows-11"/>
+      <small>Price: ${price ? price : "Not available"}</small>
+    </p>
+    <p class="flex gap-2 items-center">
+      <img width="15" height="15" src="https://img.icons8.com/carbon-copy/100/syringe.png"/>
+      <small>Status of Vaccination: ${
+        vaccinatedStatus ? vaccinatedStatus : "Not vaccinated!"
+      }</small>
+    </p>
+    <hr class='my-2' />
+    <button onclick="hidePetDetails()" class="w-full bg-[#0e7a811a] text-[#0e7a81] font-semibold p-3">Cancel</button>
+    </div>
+  </section>
+  `;
+
+  document.getElementById("pet_container").innerHTML += detailSection;
 };
 
 // show pets
@@ -127,6 +173,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
     return;
   }
   pets.forEach((pet) => {
+    console.log(pet);
     const {
       image,
       breed,
@@ -134,9 +181,12 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
       date_of_birth: birth,
       pet_name: name,
       price,
+      vaccinated_status,
+      pet_details,
     } = pet;
     const div = document.createElement("div");
     div.classList.add("p-3", "rounded-lg", "border");
+    const myObj = { name: "Rifat" };
     div.innerHTML = `
     <img src=${image} class="rounded-lg h-[180px] object-cover"/>
     <h4 class='font-semibold text-2xl py-3'>${name}</h4>
@@ -158,11 +208,11 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
     </p>
     <hr class='my-2' />
     <div class="flex items-center justify-between">
-      <button onclick="likeBtnHandler(event, '${image}')" class="px-3 py-2 rounded-lg border border-[#0e7a8126]">
+      <button onclick="likeBtnHandler('${image}')" class="px-3 py-2 rounded-lg border border-[#0e7a8126]">
         <img src="https://img.icons8.com/fluency-systems-regular/24/facebook-like--v1.png"/>
       </button>
       <button class="px-3 py-2 rounded-lg border border-[#0e7a8126] font-semibold text-[#0e7a81]">Adopt</button>
-      <button class="px-3 py-2 rounded-lg border border-[#0e7a8126] font-semibold text-[#0e7a81]">Details</button>
+      <button onclick='showPetDetails({name: "${name}", image: "${image}", breed: "${breed}", gender: "${gender}", price: "${price}", birth: "${birth}", vaccinatedStatus: "${vaccinated_status}", })' class="px-3 py-2 rounded-lg border border-[#0e7a8126] font-semibold text-[#0e7a81]">Details</button>
     </div>
     `;
     petContainer.append(div);
@@ -176,7 +226,7 @@ const showLikedPets = (likedPetImages) => {
   likedPetImages.forEach((petImage) => {
     const imgElement = document.createElement("img");
     imgElement.src = petImage;
-    imgElement.classList.add('rounded', )
+    imgElement.classList.add("rounded");
     likedPetContainer.append(imgElement);
   });
 };

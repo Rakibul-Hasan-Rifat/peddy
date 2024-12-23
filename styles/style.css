@@ -3,6 +3,11 @@ body {
   margin: 0 auto !important;
 }
 
+#details_section {
+  /* background-image: linear-gradient(to left, rgb(19, 19, 19, .1, rgba(19, 19, 19, .1))); */
+  background-color: rgba(19, 19, 19, 0.3);
+}
+
 .loader {
   transform: rotateZ(45deg);
   perspective: 1000px;
