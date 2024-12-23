@@ -110,16 +110,53 @@ const likeBtnHandler = (imageLink) => {
   console.log(petImages, "like btn clicked");
 };
 
-// showPetDetails
+// pet adopt_btn handler
+const petAdoptHandler = () => {
+  let num = 3;
+
+  const myInterval = setInterval(() => {
+    num--;
+    if (num >= 0) {
+      console.log("pet adoption", num);
+      if (document.getElementById("adopt_section")) {
+        document
+          .getElementById("pet_container")
+          .removeChild(document.getElementById("adopt_section"));
+      }
+      const adoptionSection = `
+        <section id="adopt_section" class="w-full h-screen flex justify-center items-center fixed top-0 left-0">
+          <div class="w-[400px] flex flex-col justify-center items-center rounded-lg p-5 text-center bg-white">
+            <img src="/assets/handshake.gif" alt="handshake icon to congratulate for adoption" />
+            <h4 class="text-2xl font-semibold">Congrats</h4>
+            <p>Adoption process is started for your pet in</p>
+            <h3 class="text-3xl font-semibold">${num + 1}</h3>
+          </div>
+        </section>
+      `;
+      document.getElementById("pet_container").innerHTML += adoptionSection;
+    } else {
+      document
+        .getElementById("adopt_section")
+        .classList.replace("flex", "hidden");
+      console.log("out of if", num);
+      return clearInterval(myInterval);
+    }
+  }, 1000);
+};
+
+// hide pet details section
 const hidePetDetails = () => {
   console.log("hide details is called");
-  console.log(document.getElementById('details_section'));
+  console.log(document.getElementById("details_section"));
   document
     .getElementById("pet_container")
     .removeChild(document.getElementById("details_section"));
 };
+
+// showPetDetails
 const showPetDetails = (petDetails) => {
-  const { name, image, birth, gender, price, breed, vaccinatedStatus } = petDetails;
+  const { name, image, birth, gender, price, breed, vaccinatedStatus } =
+    petDetails;
   const detailSection = `
   <section id="details_section" class="w-full h-screen flex justify-center items-center fixed top-0 left-0">
     <div class="w-[400px] rounded-lg p-5 text-center bg-white">
@@ -211,7 +248,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
       <button onclick="likeBtnHandler('${image}')" class="px-3 py-2 rounded-lg border border-[#0e7a8126]">
         <img src="https://img.icons8.com/fluency-systems-regular/24/facebook-like--v1.png"/>
       </button>
-      <button class="px-3 py-2 rounded-lg border border-[#0e7a8126] font-semibold text-[#0e7a81]">Adopt</button>
+      <button onclick="petAdoptHandler()" class="px-3 py-2 rounded-lg border border-[#0e7a8126] font-semibold text-[#0e7a81]">Adopt</button>
       <button onclick='showPetDetails({name: "${name}", image: "${image}", breed: "${breed}", gender: "${gender}", price: "${price}", birth: "${birth}", vaccinatedStatus: "${vaccinated_status}", })' class="px-3 py-2 rounded-lg border border-[#0e7a8126] font-semibold text-[#0e7a81]">Details</button>
     </div>
     `;

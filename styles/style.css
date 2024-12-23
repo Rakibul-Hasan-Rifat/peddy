@@ -3,8 +3,7 @@ body {
   margin: 0 auto !important;
 }
 
-#details_section {
-  /* background-image: linear-gradient(to left, rgb(19, 19, 19, .1, rgba(19, 19, 19, .1))); */
+#details_section, #adopt_section {
   background-color: rgba(19, 19, 19, 0.3);
 }
 
