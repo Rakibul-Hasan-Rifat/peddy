@@ -1,53 +1,139 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles/style.css">
-</head>
-<body>
+    <link rel="stylesheet" href="styles/style.css" />
+  </head>
+  <body>
     <header class="my-12">
-        <nav class="flex justify-between items-center">
-            <a href="/" class="flex gap-2 items-center ">
-                <img src="/assets/logo.webp" alt="logo">
-                <h4 class="text-2xl font-bold">Peddy</h4>
-            </a>
-            <ul class="min-w-48 flex justify-between gap-5">
-                <li><a href="#" class=" hover:text-[#0e7981] border-b border-b-transparent hover:border-b-[#0e7981] transition-all">Home</a></li>
-                <li><a href="#" class=" hover:text-[#0e7981] border-b border-b-transparent hover:border-b-[#0e7981] transition-all">Shop</a></li>
-                <li><a href="#" class=" hover:text-[#0e7981] border-b border-b-transparent hover:border-b-[#0e7981] transition-all">Contact</a></li>
-            </ul>
-            <div class="p-3 rounded-full border border-[#0e798127]">
-                <img width="20" height="20" src="https://img.icons8.com/small/20/user.png" alt="user"/>
-            </div>
-        </nav>
+      <nav class="flex justify-between items-center">
+        <a href="/" class="flex gap-2 items-center">
+          <img src="/assets/logo.webp" alt="logo" />
+          <h4 class="text-2xl font-bold">Peddy</h4>
+        </a>
+        <ul class="min-w-48 flex justify-between gap-5">
+          <li>
+            <a
+              href="#"
+              class="hover:text-[#0e7981] border-b border-b-transparent hover:border-b-[#0e7981] transition-all"
+              >Home</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="hover:text-[#0e7981] border-b border-b-transparent hover:border-b-[#0e7981] transition-all"
+              >Shop</a
+            >
+          </li>
+          <li>
+            <a
+              href="#"
+              class="hover:text-[#0e7981] border-b border-b-transparent hover:border-b-[#0e7981] transition-all"
+              >Contact</a
+            >
+          </li>
+        </ul>
+        <div class="p-3 rounded-full border border-[#0e798127]">
+          <img
+            width="20"
+            height="20"
+            src="https://img.icons8.com/small/20/user.png"
+            alt="user"
+          />
+        </div>
+      </nav>
+      <section class="flex flex-col gap-6 items-center my-14">
+        <p><strong>Bringing Families Together ❤️‍🔥</strong></p>
+        <h1 class="text-7xl font-semibold text-center">
+          Your Path to Adoption <br />
+          Starts Here
+        </h1>
+        <p class="text-center">
+          It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking <br />
+          at its layout. The point of using Lorem Ipsum is that it has a.
+        </p>
+        <a href="#main" class="px-6 py-3 bg-[#0e7a81] text-white font-semibold rounded-md">
+          View More
+        </a>
+        <img src="assets/pet.webp" alt="" />
+      </section>
     </header>
 
-    <main>
-        <!-- category section -->
-        <section class="py-5">
-            <h2>Adopt your best friend</h2>
-        <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a.</p>
-        <div id="category_container" class="flex gap-5 justify-between" onclick="showActive(event)"></div>
-        </section>
+    <main id="main" class="my-10">
+      <!-- category section -->
+      <section class="py-5">
+        <h2>Adopt your best friend</h2>
+        <p>
+          It is a long established fact that a reader will be distracted by the
+          readable content of a page when looking at its layout. The point of
+          using Lorem Ipsum is that it has a.
+        </p>
+        <div
+          id="category_container"
+          class="flex gap-5 justify-between"
+          onclick="showActive(event)"
+        ></div>
+      </section>
 
-        <!-- pets section -->
-        <section class="py-5">
-            <div class="my-3 flex justify-between items-center">
-                <h4 class="text-2xl text-[#131313] font-bold">Best Deal For You</h4>
-                <button class="bg-[#0E7A81] text-white px-4 py-2 rounded-xl text-lg">Sort by price</button>
-            </div>
-            <div class="flex gap-3">
-                <div id="pet_container" class="w-3/4 grid grid-cols-3 gap-3"></div>
-                <div id="liked_pet_container" class="w-1/4 grid grid-cols-2 gap-2 content-start border rounded-lg p-3">
-                    <span class="col-span-full text-center text-gray-400">No liked pet yet!</span>
-                </div>
-            </div>
-        </section>
+      <!-- pets section -->
+      <section class="py-5">
+        <div class="my-3 flex justify-between items-center">
+          <h4 class="text-2xl text-[#131313] font-bold">Best Deal For You</h4>
+          <button class="bg-[#0E7A81] text-white px-4 py-2 rounded-xl text-lg">
+            Sort by price
+          </button>
+        </div>
+        <div class="flex gap-3">
+          <div id="pet_container" class="w-3/4 grid grid-cols-3 gap-3"></div>
+          <div
+            id="liked_pet_container"
+            class="w-1/4 grid grid-cols-2 gap-2 content-start border rounded-lg p-3"
+          >
+            <span class="col-span-full text-center text-gray-400"
+              >No liked pet yet!</span
+            >
+          </div>
+        </div>
+      </section>
     </main>
+
+    <footer class="flex justify-between px-20 py-10 bg-[#131313] text-white">
+      <div class="flex flex-col gap-2">
+        <a href="/" class="flex gap-2 items-center mb-4">
+          <img src="/assets/logo.webp" alt="logo" />
+          <h4 class="text-2xl font-bold text-white">Peddy</h4>
+        </a>
+        <p>
+          Location: av. Washington 165, NY CA 54003 <br />
+          Phone: +31 85 964 47 25 <br />
+          Email: info@yourdomain.com <br />
+          Openings hours: 9.00 AM - 5.00 PM
+        </p>
+      </div>
+      <div class="flex flex-col gap-2">
+        <h5 class="text-base font-semibold mb-5">Useful links</h5>
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+        <a href="#">Contact</a>
+      </div>
+      <div class="flex flex-col gap-2">
+        <h5 class="text-base font-semibold mb-5">Drop a message</h5>
+        <input
+          type="text"
+          class="p-2 outline-none bg-[#ffffff08] rounded-md"
+          placeholder="Enter your mail"
+        />
+        <button class="text-white bg-[#17b0bb] p-2 font-semibold rounded-md">
+          Subscribe
+        </button>
+      </div>
+    </footer>
     <script src="scripts/script.js"></script>
-</body>
+  </body>
 </html>
 <!-- https://github.com/programming-hero-web-course2/b10a6-pet-adoption-Rakibul-Hasan-Rifat.git -->
